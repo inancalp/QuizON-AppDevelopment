@@ -47,9 +47,9 @@ public class EditWelcomeTextActivity extends AppCompatActivity {
 
             MyDatabaseHelper db_welcome_text = new MyDatabaseHelper(EditWelcomeTextActivity.this);
             db_welcome_text.updateWelcomeText(welcome_text);
-            returnIntent.putExtra("WELCOME_TEXT",welcome_text);
-            setResult(EditWelcomeTextActivity.RESULT_OK, returnIntent);
-            finish();
+//            returnIntent.putExtra("WELCOME_TEXT",welcome_text);
+//            setResult(EditWelcomeTextActivity.RESULT_OK, returnIntent);
+//            finish();
         }
     });
 

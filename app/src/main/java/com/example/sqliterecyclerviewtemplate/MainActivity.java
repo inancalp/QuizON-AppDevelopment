@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView my_recyclerview;
     CustomAdapter my_customAdapter;
     FloatingActionButton add_quiz_button, edit_text_button;
-    MyDatabaseHelper db_book, db_welcome_text;
-    ArrayList<String> book_id, book_title, book_author, book_pages;
+    MyDatabaseHelper db_quiz, db_welcome_text;
+    ArrayList<String> quiz_id, quiz_title;
     TextView welcome_textview;
     String welcome_text;
     Integer EDIT_WELCOME_REQUEST_CODE = 1;
@@ -67,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
                 welcome_text = welcome_textview.getText().toString();
                 Intent intent = new Intent(MainActivity.this, EditWelcomeTextActivity.class);
                 intent.putExtra("WELCOME_TEXT", welcome_text);
-                startActivityForResult(intent, EDIT_WELCOME_REQUEST_CODE);
+
+                //No need since parent activity been changed for EditWelcomeTextActivity. (refer manifest)
+//                startActivityForResult(intent, EDIT_WELCOME_REQUEST_CODE);
+                startActivity(intent);
             }
         });
 
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // will change the activity to AddActivity
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                Intent intent = new Intent(MainActivity.this, AddQuizActivity.class);
                 startActivity(intent);
             }
         });
@@ -94,53 +97,46 @@ public class MainActivity extends AppCompatActivity {
 
 
         // part-3
-        db_book = new MyDatabaseHelper(MainActivity.this);
-        book_id = new ArrayList<>();
-        book_title = new ArrayList<>();
-        book_author = new ArrayList<>();
-        book_pages = new ArrayList<>();
+        db_quiz = new MyDatabaseHelper(MainActivity.this);
+        quiz_id = new ArrayList<>();
+        quiz_title = new ArrayList<>();
         storeDataInArray();
 
 
         // WELCOME TEXT
-        db_welcome_text = new MyDatabaseHelper(MainActivity.this);
         retrieveWelcomeText();
         welcome_textview.setText(welcome_text);
 
 
 
         // storeDataInArray method is important to call before the customAdapter.
-        my_customAdapter = new CustomAdapter(MainActivity.this, book_id, book_title, book_author, book_pages);
+        my_customAdapter = new CustomAdapter(MainActivity.this, quiz_id, quiz_title);
         my_recyclerview.setAdapter(my_customAdapter);
 
         my_recyclerview.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-
-
-
-
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == EDIT_WELCOME_REQUEST_CODE)
-        {
-            if (resultCode == RESULT_OK)
-            {
-                String result_welcome_text = data.getStringExtra("WELCOME_TEXT");
-                if(result_welcome_text != "")
-                {
-                    welcome_textview.setText(result_welcome_text);
-                }
-            }
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if(requestCode == EDIT_WELCOME_REQUEST_CODE)
+//        {
+//            if (resultCode == RESULT_OK)
+//            {
+//                String result_welcome_text = data.getStringExtra("WELCOME_TEXT");
+//                if(result_welcome_text != "")
+//                {
+//                    welcome_textview.setText(result_welcome_text);
+//                }
+//            }
+//        }
+//    }
 
     void storeDataInArray()
     {
-        Cursor cursor = db_book.readAllData_bookTable();
+        Cursor cursor = db_quiz.readAllData_quizTable();
         
         if(cursor.getCount() == 0)
         {
@@ -151,10 +147,8 @@ public class MainActivity extends AppCompatActivity {
             while(cursor.moveToNext())
             {
                 // i = 0 first col, i = 1 second col ...
-                book_id.add(cursor.getString(0));
-                book_title.add(cursor.getString(1));
-                book_author.add(cursor.getString(2));
-                book_pages.add(cursor.getString(3));
+                quiz_id.add(cursor.getString(0));
+                quiz_title.add(cursor.getString(1));
             }
         }
 
@@ -162,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
     void retrieveWelcomeText()
     {
+        db_welcome_text = new MyDatabaseHelper(MainActivity.this);
         Cursor cursor = db_welcome_text.readAllData_welcomeText();
 
         if(cursor.getCount() == 0)

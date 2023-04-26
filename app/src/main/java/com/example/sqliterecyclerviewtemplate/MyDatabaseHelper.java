@@ -10,32 +10,33 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
 
-    // private static final => basically a constant.
-
-    private static final String DATABASE_NAME="BookLibrary.db";
+    private static final String DATABASE_NAME="QuizON.db";
     private static final int DATABASE_VERSION=1;
 
-    //table
-    private static final String TABLE_NAME="my_library";
-
-    //columns
-    private static final String COLUMN_ID="_id";
-    private static final String COLUMN_TITLE="book_title";
-    private static final String COLUMN_AUTHOR="book_author";
-    private static final String COLUMN_PAGES="book_pages";
+    private static final String QUIZ_TABLE_NAME="quizzes_table";
+    private static final String QUIZ_ID="quiz_id";
+    private static final String QUIZ_TITLE="quiz_title";
 
 
-    //WELCOME TEXT:
+    private static final String QUESTION_TABLE_NAME="questions_table";
+    private static final String QUESTION_ID="question_id";
+    private static final String QUESTION="question";
+    private static final String ANSWER_A="answer_a";
+    private static final String ANSWER_B="answer_b";
+    private static final String ANSWER_C="answer_c";
+    private static final String ANSWER_D="answer_d";
+//    private static final String CORRECT_ANSWER="correct_answer";
     public static final String WELCOME_TEXT_TABLE="welcome_text_table";
-    private static final String WELCOME_TEXT_ID="_id";
+    private static final String WELCOME_TEXT_ID="welcome_text_id";
     private static final String WELCOME_TEXT="welcome_text";
 
 
-    // context refers to the activity. (In this case: "AddActivity.this")
     MyDatabaseHelper(@Nullable Context context) {
         // factory is set to null explicitly.
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -49,18 +50,31 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
 
-
-        Log.d("addWelcomeMessage","onCreate Active!");
-        String query =
-                "CREATE TABLE " + TABLE_NAME +
-                        " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        " " + COLUMN_TITLE + " TEXT," +
-                        " " + COLUMN_AUTHOR + " TEXT," +
-                        " " + COLUMN_PAGES + " INTEGER" +
+        Log.d("db_oncreate", "END");
+        String quiz_query =
+                "CREATE TABLE " + QUIZ_TABLE_NAME +
+                        " (" + QUIZ_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        " " + QUIZ_TITLE + " TEXT" +
                         ");";
-        db.execSQL(query);
 
-        //WELCOME TEXT
+        db.execSQL(quiz_query);
+
+
+        String questions_query =
+                "CREATE TABLE " + QUESTION_TABLE_NAME +
+                        " (" + QUESTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        " " + QUIZ_ID + " INTEGER," +
+                        " " + QUESTION + " TEXT," +
+                        " " + ANSWER_A + " TEXT," +
+                        " " + ANSWER_B + " TEXT," +
+                        " " + ANSWER_C + " TEXT," +
+                        " " + ANSWER_D + " TEXT," +
+//                        " " + CORRECT_ANSWER + " TEXT," +
+                        " FOREIGN KEY (" + QUIZ_ID + ") REFERENCES " + QUIZ_TABLE_NAME + " (" + QUIZ_ID + ")" +
+                        ");";
+        db.execSQL(questions_query);
+
+
         String welcome_text_query =
                 "CREATE TABLE " + WELCOME_TEXT_TABLE +
                         " (" + WELCOME_TEXT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -68,57 +82,79 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                         ");";
 
         db.execSQL(welcome_text_query);
-
         insertDefaultWelcomeText(db);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        String query =
-                "DROP TABLE IF EXISTS " + TABLE_NAME;
-        db.execSQL(query);
+        String quiz_query =
+                "DROP TABLE IF EXISTS " + QUIZ_TABLE_NAME;
+        db.execSQL(quiz_query);
+
+        String question_query =
+                "DROP TABLE IF EXISTS " + QUESTION_TABLE_NAME;
+        db.execSQL(question_query);
 
         String welcome_text_query =
                 "DROP TABLE IF EXISTS " + WELCOME_TEXT_TABLE;
         db.execSQL(welcome_text_query);
 
-
     }
 
-    void addBook(String title, String author, int pages)
+    long addQuiz(String title)
     {
-        // create database object "db"
         SQLiteDatabase db = this.getWritableDatabase();
-        // create content object for the "db", "cv".
         ContentValues cv = new ContentValues();
+        cv.put(QUIZ_TITLE, title);
 
-
-        // add the column values into content
-        cv.put(COLUMN_TITLE, title);
-        cv.put(COLUMN_AUTHOR, author);
-        cv.put(COLUMN_PAGES, pages);
-
-
-        // insert the content into database object and store it into a long type object.
-            // to check if everything was correct.
-        long result = db.insert(TABLE_NAME, null, cv);
-
+        long result = db.insert(QUIZ_TABLE_NAME, null, cv);
 
         if(result == -1)
         {
             // context object comes from the constructor. (memorize.)
-            Toast.makeText(context, "Insert Failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "QUIZ_TABLE Insert Failed", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            Toast.makeText(context, "Insert Successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "QUIZ_TABLE Insert Successful", Toast.LENGTH_SHORT).show();
+
         }
+
+        return result;
     }
 
 
 
-    //insertDefaultWelcomeText
+    void addQuestions(ArrayList<Question> questions, long quiz_id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        for(Question question : questions)
+        {
+            ContentValues cv = new ContentValues();
+            cv.put(QUIZ_ID, quiz_id);
+            cv.put(QUESTION, question.getQuestion());
+            cv.put(ANSWER_A, question.getAnswerA());
+            cv.put(ANSWER_B, question.getAnswerB());
+            cv.put(ANSWER_C, question.getAnswerC());
+            cv.put(ANSWER_D, question.getAnswerD());
+            long result = db.insert(QUESTION_TABLE_NAME, null, cv);
+
+            if(result == -1)
+            {
+                // context object comes from the constructor. (memorize.)
+                Toast.makeText(context, "QUESTION_TABLE Insert Failed", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else
+            {
+                Toast.makeText(context, "QUESTION_TABLE Insert Successful", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
 
     void insertDefaultWelcomeText(SQLiteDatabase db)
     {
@@ -128,22 +164,15 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
     // new Method for to use in recycler_view
-    Cursor readAllData_bookTable()
+    Cursor readAllData_quizTable()
     {
-        // query
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT * FROM " + QUIZ_TABLE_NAME;
 
-        // db object
         SQLiteDatabase db = this.getReadableDatabase();
 
-
-        // (?) cursor obj.
         Cursor cursor = null;
 
-        // we store all the query inside the cursor object.
-        // we should also make sure that it is not null.
         if(db != null)
         {
             cursor = db.rawQuery(query, null);
@@ -155,6 +184,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     Cursor readAllData_welcomeText()
     {
+
         // query
         String query = "SELECT * FROM " + WELCOME_TEXT_TABLE;
 
@@ -162,11 +192,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
 
-        // (?) cursor obj.
         Cursor cursor = null;
-
-        // we store all the query inside the cursor object.
-        // we should also make sure that it is not null.
         if(db != null)
         {
             cursor = db.rawQuery(query, null);
@@ -176,28 +202,24 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     // part-4
-    void updateData(String row_id, String title, String author, String pages)
+    void updateQuizData(String row_id, String title)
     {
-        // we retrieve out db in Write mode.
+
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_TITLE, title);
-        cv.put(COLUMN_AUTHOR, author);
-        cv.put(COLUMN_PAGES, pages);
+        cv.put(QUIZ_TITLE, title);
 
-        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
+        long result = db.update(QUIZ_TABLE_NAME, cv, "quiz_id=?", new String[]{row_id});
 
         if(result == -1)
         {
-            Toast.makeText(context, "Update Failed.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "QUIZ_TABLE Update Failed.", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            Toast.makeText(context, "Update Successful.", Toast.LENGTH_SHORT).show();
-            Log.d("update_log", "title: " + title);
-            Log.d("update_log", "author: " + author);
-            Log.d("update_log", "pages: " + pages);
+            Toast.makeText(context, "QUIZ_TABLE Update Successful.", Toast.LENGTH_SHORT).show();
+            Log.d("QUIZ_TABLE_log", "title: " + title);
         }
     }
 
@@ -211,7 +233,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         Log.d("hello", welcome_text);
 
-        long result = db.update(WELCOME_TEXT_TABLE, cv, "_id=?", new String[] { "1" });
+        long result = db.update(WELCOME_TEXT_TABLE, cv, "welcome_text_id=?", new String[] { "1" });
 
         if(result == -1)
         {

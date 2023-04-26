@@ -1,67 +1,70 @@
 package com.example.sqliterecyclerviewtemplate;
 
 public class Question {
-    private String m_question;
-    private String m_answerA;
-    private String m_answerB;
-    private String m_answerC;
-    private String m_answerD;
-    private String m_correctAnswer;
+    private String question;
+    private String answer_a;
+    private String answer_b;
+    private String answer_c;
+    private String answer_d;
+//    private String correct_answer;
 
-    public Question(String questionText, String answerA, String answerB, String answerC, String answerD, String correctAnswer) {
-        this.m_question = questionText;
-        this.m_answerA = answerA;
-        this.m_answerB = answerB;
-        this.m_answerC = answerC;
-        this.m_answerD = answerD;
-        this.m_correctAnswer = correctAnswer;
+    // @constructor
+    //  String correct_answer
+    public Question(String question, String answer_a, String answer_b, String answer_c, String answer_d) {
+        this.question = question;
+        this.answer_a = answer_a;
+        this.answer_b = answer_b;
+        this.answer_c = answer_c;
+        this.answer_d = answer_d;
+//        this.correct_answer = correct_answer;
     }
 
-    public String getQuestionText() {
-        return m_question;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setQuestionText(String questionText) {
-        this.m_question = questionText;
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     public String getAnswerA() {
-        return m_answerA;
+        return answer_a;
     }
 
-    public void setAnswerA(String answerA) {
-        this.m_answerA = answerA;
+    public void setAnswerA(String answer_a) {
+        this.answer_a = answer_a;
     }
 
     public String getAnswerB() {
-        return m_answerB;
+        return answer_b;
     }
 
-    public void setAnswerB(String answerB) {
-        this.m_answerB = answerB;
+    public void setAnswerB(String answer_b) {
+        this.answer_b = answer_b;
     }
 
     public String getAnswerC() {
-        return m_answerC;
+        return answer_c;
     }
 
-    public void setAnswerC(String answerC) {
-        this.m_answerC = answerC;
+    public void setAnswerC(String answer_c) {
+        this.answer_c = answer_c;
     }
 
     public String getAnswerD() {
-        return m_answerD;
+        return answer_d;
     }
 
-    public void setAnswerD(String answerD) {
-        this.m_answerD = answerD;
+    public void setAnswerD(String answer_d) {
+        this.answer_d = answer_d;
     }
 
-    public String getCorrectAnswer() {
-        return m_correctAnswer;
-    }
-
-    public void setCorrectAnswer(String correctAnswer) {
-        this.m_correctAnswer = correctAnswer;
-    }
+//    public String getCorrectAnswer() {
+//        return correct_answer;
+//    }
+//
+//    public void setCorrectAnswer(String correct_answer) {
+//        this.correct_answer = correct_answer;
+//    }
 }
+
