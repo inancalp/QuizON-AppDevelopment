@@ -24,7 +24,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String QUIZ_TITLE="quiz_title";
 
 
-    private static final String QUESTION_TABLE_NAME="questions_table";
+    private static final String QUESTIONS_TABLE_NAME="questions_table";
     private static final String QUESTION_ID="question_id";
     private static final String QUESTION="question";
     private static final String ANSWER_A="answer_a";
@@ -61,7 +61,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
 
         String questions_query =
-                "CREATE TABLE " + QUESTION_TABLE_NAME +
+                "CREATE TABLE " + QUESTIONS_TABLE_NAME +
                         " (" + QUESTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                         " " + QUIZ_ID + " INTEGER," +
                         " " + QUESTION + " TEXT," +
@@ -94,7 +94,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(quiz_query);
 
         String question_query =
-                "DROP TABLE IF EXISTS " + QUESTION_TABLE_NAME;
+                "DROP TABLE IF EXISTS " + QUESTIONS_TABLE_NAME;
         db.execSQL(question_query);
 
         String welcome_text_query =
@@ -140,7 +140,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             cv.put(ANSWER_B, question.getAnswerB());
             cv.put(ANSWER_C, question.getAnswerC());
             cv.put(ANSWER_D, question.getAnswerD());
-            long result = db.insert(QUESTION_TABLE_NAME, null, cv);
+            long result = db.insert(QUESTIONS_TABLE_NAME, null, cv);
 
             if(result == -1)
             {
@@ -182,6 +182,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    Cursor readData_questionsTable(long quiz_id)
+    {
+        String query = "SELECT * FROM " + QUESTIONS_TABLE_NAME
+                + " WHERE " + QUIZ_ID + " == " + quiz_id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+
+        if(db != null)
+        {
+            cursor = db.rawQuery(query, null);
+        }
+
+        return cursor;
+    }
     Cursor readAllData_welcomeText()
     {
 
@@ -246,23 +262,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // WELCOME TEXT UPDATE
-//    void updateWelcomeText(String row_id, String welcome_text)
-//    {
-//        SQLiteDatabase db = getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//
-//        cv.put(WELCOME_TEXT, welcome_text);
-//
-//        long result = db.update(WELCOME_TEXT_TABLE, cv, "_id=?", new String[]{row_id});
-//
-//        if(result == -1)
-//        {
-//            Toast.makeText(context, "Welcome Text Update Failed.", Toast.LENGTH_SHORT).show();
-//        }
-//        else
-//        {
-//            Toast.makeText(context, "Welcome Text Update Successful.", Toast.LENGTH_SHORT).show();
-//        }
-//    }
+
+    public void deleteQuiz(String quiz_id) {
+
+        Log.d("deleteQuiz", quiz_id);
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.delete(QUIZ_TABLE_NAME, QUIZ_ID + " = ?", new String[] { quiz_id });
+    }
+
 }

@@ -3,6 +3,7 @@ package com.example.sqliterecyclerviewtemplate;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,14 +45,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.quiz_id_txt.setText(String.valueOf(quiz_id.get(position)));
         holder.quiz_title_txt.setText(String.valueOf(quiz_title.get(position)));
 
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+        holder.my_row_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, UpdateActivity.class);
 
-                intent.putExtra("id", String.valueOf(quiz_id.get(position)));
-                intent.putExtra("title", String.valueOf(quiz_title.get(position)));
+//                Log.d("showQuestions:", "quiz_id: " + quiz_id.get(position));
+//                Log.d("showQuestions:", "quiz_title: " + quiz_title.get(position));
 
+                Intent intent = new Intent(context, ShowQuestionsActivity.class);
+
+                intent.putExtra("QUIZ_ID", String.valueOf(quiz_id.get(position)));
+                intent.putExtra("QUIZ_TITLE", String.valueOf(quiz_title.get(position)));
                 context.startActivity(intent);
             }
         });
@@ -72,14 +76,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         // part-4
         // layout it for the recyclerView "my_row.xml"
-        LinearLayout mainLayout;
+        LinearLayout my_row_layout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             quiz_id_txt = itemView.findViewById(R.id.quiz_id_txt);
             quiz_title_txt = itemView.findViewById(R.id.quiz_title_txt);
 
             // part-4
-            mainLayout = itemView.findViewById(R.id.mainLayout);
+            my_row_layout = itemView.findViewById(R.id.my_row_layout);
 
         }
     }

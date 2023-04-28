@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class AddQuestionActivity extends AppCompatActivity {
 
+
     TextView quiz_title_textview;
     EditText question_view, answer_a_view, answer_b_view, answer_c_view, answer_d_view;
     Button add_question_button, store_quiz_button;
@@ -79,4 +80,14 @@ public class AddQuestionActivity extends AppCompatActivity {
         });
 
     }
+
+
+    // More TEST NEEDED.
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        MyDatabaseHelper db = new MyDatabaseHelper(AddQuestionActivity.this);
+//        db.deleteQuiz(String.valueOf(quiz_id));
+//
+//    }
 }

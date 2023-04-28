@@ -1,13 +1,11 @@
 package com.example.sqliterecyclerviewtemplate;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +15,6 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // initialize the variables.
-        my_recyclerview = findViewById(R.id.my_recyclerview);
+        my_recyclerview = findViewById(R.id.questions_recyclerview);
         add_quiz_button = findViewById(R.id.add_quiz_button);
         edit_text_button = findViewById(R.id.edit_text_button);
         welcome_textview = findViewById(R.id.welcome_textview);

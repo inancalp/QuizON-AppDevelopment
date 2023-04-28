@@ -13,7 +13,6 @@ public class AddQuizActivity extends AppCompatActivity {
 
     EditText quiz_title_input;
     Button add_button;
-
     long quiz_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -12,6 +12,9 @@
         android:theme="@style/Theme.SQLiteRecyclerViewTemplate"
         tools:targetApi="31">
         <activity
+            android:name=".ShowQuestionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddQuestionActivity"
             android:exported="false" />
         <activity
