@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,6 +23,9 @@ public class AddQuestionActivity extends AppCompatActivity {
     Button add_question_button, store_quiz_button;
     long quiz_id;
 
+    RadioGroup correct_answer_radio_group;
+    RadioButton correct_answer_radio_button;
+    String correct_answer;
     ArrayList<Question> questions = new ArrayList<Question>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class AddQuestionActivity extends AppCompatActivity {
         answer_b_view = findViewById(R.id.answer_b_view);
         answer_c_view = findViewById(R.id.answer_c_view);
         answer_d_view = findViewById(R.id.answer_d_view);
+        correct_answer_radio_group = findViewById(R.id.correct_answer_radio_group);
         add_question_button = findViewById(R.id.add_question_button);
         store_quiz_button = findViewById(R.id.store_quiz_button);
 
@@ -46,33 +52,57 @@ public class AddQuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                questions.add(new Question(
-                        question_view.getText().toString(),
-                        answer_a_view.getText().toString(),
-                        answer_b_view.getText().toString(),
-                        answer_c_view.getText().toString(),
-                        answer_d_view.getText().toString()
-                ));
+                int correct_answer_radio_button_id = correct_answer_radio_group.getCheckedRadioButtonId();
 
-                question_view.setText("");
-                answer_a_view.setText("");
-                answer_b_view.setText("");
-                answer_c_view.setText("");
-                answer_d_view.setText("");
+                if (correct_answer_radio_button_id != -1) {
+                    correct_answer_radio_button = findViewById(correct_answer_radio_button_id);
+//                    Log.d("selected_answer", correct_answer_radio_button.getText().toString());
+
+                    Log.d("Questions", correct_answer_radio_button.getText().toString());
+
+                    if(correct_answer_radio_button.getText().toString().equals("A"))
+                        correct_answer = answer_a_view.getText().toString();
+                    if(correct_answer_radio_button.getText().toString().equals("B"))
+                        correct_answer = answer_b_view.getText().toString();
+                    if(correct_answer_radio_button.getText().toString().equals("C"))
+                        correct_answer = answer_c_view.getText().toString();
+                    if(correct_answer_radio_button.getText().toString().equals("D"))
+                        correct_answer = answer_d_view.getText().toString();
+
+
+                    questions.add(new Question(
+                            question_view.getText().toString(),
+                            answer_a_view.getText().toString(),
+                            answer_b_view.getText().toString(),
+                            answer_c_view.getText().toString(),
+                            answer_d_view.getText().toString(),
+                            correct_answer));
+
+                    question_view.setText("");
+                    answer_a_view.setText("");
+                    answer_b_view.setText("");
+                    answer_c_view.setText("");
+                    answer_d_view.setText("");
+                    correct_answer_radio_group.clearCheck();
+
+                } else {
+                    // Some Validation Later.
+                }
             }
         });
 
         store_quiz_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                for(Question question : questions)
-//                {
-//                    Log.d("Questions", question.getQuestion().toString());
-//                    Log.d("Questions", question.getAnswerA().toString());
-//                    Log.d("Questions", question.getAnswerB().toString());
-//                    Log.d("Questions", question.getAnswerC().toString());
-//                    Log.d("Questions", question.getAnswerD().toString());
-//                }
+                for(Question question : questions)
+                {
+                    Log.d("Questions", question.getQuestion().toString());
+                    Log.d("Questions", question.getAnswerA().toString());
+                    Log.d("Questions", question.getAnswerB().toString());
+                    Log.d("Questions", question.getAnswerC().toString());
+                    Log.d("Questions", question.getAnswerD().toString());
+                    Log.d("Questions", question.getCorrectAnswer().toString());
+                }
 
                 MyDatabaseHelper db = new MyDatabaseHelper(AddQuestionActivity.this);
                 db.addQuestions(questions, quiz_id);

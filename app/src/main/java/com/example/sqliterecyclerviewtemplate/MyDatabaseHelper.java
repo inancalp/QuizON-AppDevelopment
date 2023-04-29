@@ -31,7 +31,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String ANSWER_B="answer_b";
     private static final String ANSWER_C="answer_c";
     private static final String ANSWER_D="answer_d";
-//    private static final String CORRECT_ANSWER="correct_answer";
+    private static final String CORRECT_ANSWER="correct_answer";
     public static final String WELCOME_TEXT_TABLE="welcome_text_table";
     private static final String WELCOME_TEXT_ID="welcome_text_id";
     private static final String WELCOME_TEXT="welcome_text";
@@ -69,7 +69,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                         " " + ANSWER_B + " TEXT," +
                         " " + ANSWER_C + " TEXT," +
                         " " + ANSWER_D + " TEXT," +
-//                        " " + CORRECT_ANSWER + " TEXT," +
+                        " " + CORRECT_ANSWER + " TEXT," +
                         " FOREIGN KEY (" + QUIZ_ID + ") REFERENCES " + QUIZ_TABLE_NAME + " (" + QUIZ_ID + ")" +
                         ");";
         db.execSQL(questions_query);
@@ -140,6 +140,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             cv.put(ANSWER_B, question.getAnswerB());
             cv.put(ANSWER_C, question.getAnswerC());
             cv.put(ANSWER_D, question.getAnswerD());
+            cv.put(CORRECT_ANSWER, question.getCorrectAnswer());
             long result = db.insert(QUESTIONS_TABLE_NAME, null, cv);
 
             if(result == -1)

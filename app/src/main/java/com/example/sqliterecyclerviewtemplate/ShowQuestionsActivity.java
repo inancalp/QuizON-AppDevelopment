@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,13 +18,15 @@ import java.util.ArrayList;
 public class ShowQuestionsActivity extends AppCompatActivity {
 
 
-    MyDatabaseHelper db;
-    ArrayList question_id, question, answer_a, answer_b, answer_c, answer_d;
-    long quiz_id;
-    String quiz_title;
-    RecyclerView questions_recyclerview;
-    QuestionsAdapter questionsAdapter;
-    TextView quiz_title_view;
+    private MyDatabaseHelper db;
+//  private   ArrayList question_id, question, answer_a, answer_b, answer_c, answer_d, correct_answer;
+    private ArrayList<Question> questions = new ArrayList<>();
+    private long quiz_id;
+    private String quiz_title;
+    private RecyclerView questions_recyclerview;
+    private QuestionsAdapter questionsAdapter;
+    private TextView quiz_title_view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +47,14 @@ public class ShowQuestionsActivity extends AppCompatActivity {
 
         questions_recyclerview = findViewById(R.id.questions_recyclerview);
         db = new MyDatabaseHelper(ShowQuestionsActivity.this);
-        question_id = new ArrayList<>();
-        question = new ArrayList<>();
-        answer_a = new ArrayList<>();
-        answer_b = new ArrayList<>();
-        answer_c = new ArrayList<>();
-        answer_d = new ArrayList<>();
 
         storeQuestions();
 
-        questionsAdapter = new QuestionsAdapter(ShowQuestionsActivity.this, question_id, question, answer_a, answer_b, answer_c, answer_d);
+//        questionsAdapter = new QuestionsAdapter(ShowQuestionsActivity.this, question_id, question, answer_a, answer_b, answer_c, answer_d, correct_answer);
+        questionsAdapter = new QuestionsAdapter(ShowQuestionsActivity.this, questions);
         questions_recyclerview.setAdapter(questionsAdapter);
         questions_recyclerview.setLayoutManager(new LinearLayoutManager(ShowQuestionsActivity.this));
+
     }
 
     void storeQuestions()
@@ -68,12 +68,14 @@ public class ShowQuestionsActivity extends AppCompatActivity {
         {
             while(cursor.moveToNext())
             {
-                question_id.add(cursor.getString(0));
-                question.add(cursor.getString(2));
-                answer_a.add(cursor.getString(3));
-                answer_b.add(cursor.getString(4));
-                answer_c.add(cursor.getString(5));
-                answer_d.add(cursor.getString(6));
+                questions.add(new Question(
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7)
+                ));
             }
         }
     }

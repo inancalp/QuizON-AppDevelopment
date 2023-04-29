@@ -34,25 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        Quiz quiz = new Quiz("My Quiz");
-//        Question question1 = new Question("What is 2+2?", "2", "3", "4", "5", "4");
-//        Question question2 = new Question("What color is the sky?", "Blue", "Green", "Red", "Yellow", "Blue");
-//        quiz.addQuestion(question1);
-//        quiz.addQuestion(question2);
-//
-//        for(Question question : quiz.getQuestions())
-//        {
-//            Log.d("Questions", question.getQuestionText().toString());
-//            Log.d("Questions", question.getAnswerA().toString());
-//            Log.d("Questions", question.getAnswerB().toString());
-//            Log.d("Questions", question.getAnswerC().toString());
-//            Log.d("Questions", question.getAnswerD().toString());
-//            Log.d("Questions", question.getCorrectAnswer().toString());
-//        }
-
-
-        // initialize the variables.
         my_recyclerview = findViewById(R.id.questions_recyclerview);
         add_quiz_button = findViewById(R.id.add_quiz_button);
         edit_text_button = findViewById(R.id.edit_text_button);
@@ -64,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 welcome_text = welcome_textview.getText().toString();
                 Intent intent = new Intent(MainActivity.this, EditWelcomeTextActivity.class);
                 intent.putExtra("WELCOME_TEXT", welcome_text);
-
-                //No need since parent activity been changed for EditWelcomeTextActivity. (refer manifest)
-//                startActivityForResult(intent, EDIT_WELCOME_REQUEST_CODE);
                 startActivity(intent);
             }
         });

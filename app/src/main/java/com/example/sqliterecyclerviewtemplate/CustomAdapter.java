@@ -42,7 +42,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.quiz_id_txt.setText(String.valueOf(quiz_id.get(position)));
+//        holder.quiz_id_txt.setText(String.valueOf(quiz_id.get(position)));
         holder.quiz_title_txt.setText(String.valueOf(quiz_title.get(position)));
 
         holder.my_row_layout.setOnClickListener(new View.OnClickListener() {
@@ -70,21 +70,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-
-        TextView quiz_id_txt;
         TextView quiz_title_txt;
-
-        // part-4
-        // layout it for the recyclerView "my_row.xml"
         LinearLayout my_row_layout;
         public MyViewHolder(@NonNull View itemView) {
+
             super(itemView);
-            quiz_id_txt = itemView.findViewById(R.id.quiz_id_txt);
             quiz_title_txt = itemView.findViewById(R.id.quiz_title_txt);
-
-            // part-4
             my_row_layout = itemView.findViewById(R.id.my_row_layout);
-
         }
     }
 }

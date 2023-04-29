@@ -12,6 +12,9 @@
         android:theme="@style/Theme.SQLiteRecyclerViewTemplate"
         tools:targetApi="31">
         <activity
+            android:name=".ShowResultsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ShowQuestionsActivity"
             android:exported="false" />
         <activity
@@ -31,7 +34,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="Book Library">
+            android:label="QuizON Express">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
