@@ -6,7 +6,8 @@
     android:id="@+id/question_row_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    style="@style/SCREEN">
 
 
     <Button
@@ -44,6 +45,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Question Here."
+                android:textColor="@color/black"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,28 +66,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Option A" />
+                    android:text="Option A"
+                    android:textColor="@color/black"/>
 
                 <RadioButton
                     android:id="@+id/answerB_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Option B" />
+                    android:text="Option B"
+                    android:textColor="@color/black"/>
 
                 <RadioButton
                     android:id="@+id/answerC_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Option C" />
+                    android:text="Option C"
+                    android:textColor="@color/black"/>
 
                 <RadioButton
                     android:id="@+id/answerD_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Option D" />
+                    android:text="Option D"
+                    android:textColor="@color/black"/>
 
             </RadioGroup>
 

@@ -25,21 +25,35 @@ public class ShowQuestionsActivity extends AppCompatActivity {
     private QuestionsAdapter questionsAdapter;
     private TextView quiz_title_view;
 
+    private String text_size;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_questions);
-
+        getSupportActionBar().hide();
         Intent intent = getIntent();
 
+        text_size = intent.getStringExtra("TEXT_SIZE");
 
-        // Change can be done to simplify things?
         quiz_id = Long.parseLong(intent.getStringExtra("QUIZ_ID"));
         quiz_title = intent.getStringExtra("QUIZ_TITLE");
 
         quiz_title_view = findViewById(R.id.quiz_title_view);
         quiz_title_view.setText(quiz_title);
+
+//        Log.d("ShowQuestionsActivity", "text_size: " + text_size);
+
+        if(text_size.equals("Small"))
+            quiz_title_view.setTextAppearance(R.style.SMALL_TITLE);
+        if(text_size.equals("Medium"))
+            quiz_title_view.setTextAppearance(R.style.MEDIUM_TITLE);
+        if(text_size.equals("Large"))
+            quiz_title_view.setTextAppearance(R.style.LARGE_TITLE);
+
+
+        // Change can be done to simplify things?
+
 
         Log.d("ShowQuestionsActivityLog", "quiz_id: " + quiz_id);
         Log.d("ShowQuestionsActivityLog", "quiz_title: " + quiz_title);
@@ -50,7 +64,7 @@ public class ShowQuestionsActivity extends AppCompatActivity {
         storeQuestions();
 
 //        questionsAdapter = new QuestionsAdapter(ShowQuestionsActivity.this, question_id, question, answer_a, answer_b, answer_c, answer_d, correct_answer);
-        questionsAdapter = new QuestionsAdapter(ShowQuestionsActivity.this, questions, quiz_id);
+        questionsAdapter = new QuestionsAdapter(ShowQuestionsActivity.this, questions, quiz_id, text_size);
         questions_recyclerview.setAdapter(questionsAdapter);
         questions_recyclerview.setLayoutManager(new LinearLayoutManager(ShowQuestionsActivity.this));
 

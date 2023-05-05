@@ -3,6 +3,7 @@ package com.example.sqliterecyclerviewtemplate;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.MyViewHolder>{
@@ -20,13 +23,15 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.MyViewHolder>{
     private ArrayList quiz_id;
     private ArrayList quiz_title;
 
+    private String text_size;
 
     // constructor
-    QuizAdapter(Context context, ArrayList quiz_id, ArrayList quiz_title)
+    QuizAdapter(Context context, ArrayList quiz_id, ArrayList quiz_title, String text_size)
     {
         this.context = context;
         this.quiz_id = quiz_id;
         this.quiz_title = quiz_title;
+        this.text_size = text_size;
     }
 
 
@@ -41,20 +46,24 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.MyViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull QuizAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-//        holder.quiz_id_txt.setText(String.valueOf(quiz_id.get(position)));
         holder.quiz_title_txt.setText(String.valueOf(quiz_title.get(position)));
 
+//        Log.d("QuizAdapter", "text size: " + text_size);
+        if(text_size.equals("Small"))
+            holder.quiz_title_txt.setTextAppearance(R.style.SMALL_TEXT);
+        if(text_size.equals("Medium"))
+            holder.quiz_title_txt.setTextAppearance(R.style.MEDIUM_TEXT);
+        if(text_size.equals("Large"))
+            holder.quiz_title_txt.setTextAppearance(R.style.LARGE_TEXT);
         holder.my_row_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                Log.d("showQuestions:", "quiz_id: " + quiz_id.get(position));
-//                Log.d("showQuestions:", "quiz_title: " + quiz_title.get(position));
-
                 Intent intent = new Intent(context, ShowQuestionsActivity.class);
-
                 intent.putExtra("QUIZ_ID", String.valueOf(quiz_id.get(position)));
                 intent.putExtra("QUIZ_TITLE", String.valueOf(quiz_title.get(position)));
+
+                //HERE I ADD THE TEXT SIZE AGAIN SO I CAN PASS IT THROUGH THE WHOLE APPLICATION.
+                intent.putExtra("TEXT_SIZE", text_size);
                 context.startActivity(intent);
             }
         });

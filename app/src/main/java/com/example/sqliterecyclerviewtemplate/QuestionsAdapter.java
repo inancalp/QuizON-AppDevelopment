@@ -26,14 +26,15 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
     private RadioButton checked_radio_button;
     private Integer correct_answers_amount;
     private long quiz_id;
-
+    private String text_size;
 
 //    QuestionsAdapter(Context context, ArrayList question_id, ArrayList question, ArrayList answer_a, ArrayList answer_b, ArrayList answer_c, ArrayList answer_d, ArrayList correct_answers)
-    QuestionsAdapter(Context context, ArrayList<Question> questions, long quiz_id)
+    QuestionsAdapter(Context context, ArrayList<Question> questions, long quiz_id, String text_size)
     {
         this.context = context;
         this.questions = questions;
         this.quiz_id = quiz_id;
+        this.text_size = text_size;
 
         for(Integer i = 0; i < questions.size(); i++)
         {
@@ -64,6 +65,37 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
         question_holder.answerB_view.setText(String.valueOf(questions.get(position).getAnswerB()));
         question_holder.answerC_view.setText(String.valueOf(questions.get(position).getAnswerC()));
         question_holder.answerD_view.setText(String.valueOf(questions.get(position).getAnswerD()));
+
+        if(text_size.equals("Small"))
+        {
+            question_holder.question_view.setTextAppearance(R.style.SMALL_TEXT);
+            question_holder.answerA_view.setTextAppearance(R.style.SMALL_TEXT);
+            question_holder.answerB_view.setTextAppearance(R.style.SMALL_TEXT);
+            question_holder.answerC_view.setTextAppearance(R.style.SMALL_TEXT);
+            question_holder.answerD_view.setTextAppearance(R.style.SMALL_TEXT);
+            question_holder.show_results_button.setTextAppearance(R.style.SMALL_TEXT);
+            question_holder.delete_quiz_button.setTextAppearance(R.style.SMALL_TEXT);
+        }
+        if(text_size.equals("Medium"))
+        {
+            question_holder.question_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            question_holder.answerA_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            question_holder.answerB_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            question_holder.answerC_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            question_holder.answerD_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            question_holder.show_results_button.setTextAppearance(R.style.MEDIUM_TEXT);
+            question_holder.delete_quiz_button.setTextAppearance(R.style.MEDIUM_TEXT);
+        }
+        if(text_size.equals("Large"))
+        {
+            question_holder.question_view.setTextAppearance(R.style.LARGE_TEXT);
+            question_holder.answerA_view.setTextAppearance(R.style.LARGE_TEXT);
+            question_holder.answerB_view.setTextAppearance(R.style.LARGE_TEXT);
+            question_holder.answerC_view.setTextAppearance(R.style.LARGE_TEXT);
+            question_holder.answerD_view.setTextAppearance(R.style.LARGE_TEXT);
+            question_holder.show_results_button.setTextAppearance(R.style.LARGE_TEXT);
+            question_holder.delete_quiz_button.setTextAppearance(R.style.LARGE_TEXT);
+        }
 
         if (position == 0)
             question_holder.delete_quiz_button.setVisibility(View.VISIBLE);
@@ -106,6 +138,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
                 // if Question class implements Parcelable Interface, then (ArrayList<? extends Parcelable>) can be used as casted type.
                 intent.putParcelableArrayListExtra("QUESTIONS", (ArrayList<? extends Parcelable>) questions);
                 intent.putExtra("CORRECT_ANSWERS_AMOUNT", correct_answers_amount);
+                intent.putExtra("TEXT_SIZE", text_size);
                 context.startActivity(intent);
 
 

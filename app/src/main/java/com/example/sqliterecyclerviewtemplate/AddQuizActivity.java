@@ -16,14 +16,34 @@ public class AddQuizActivity extends AppCompatActivity {
     Button add_button;
     long quiz_id;
     String quiz_title;
+    String text_size;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_quiz);
-        setTitle("Add Quiz Activity");
+        getSupportActionBar().hide();
         // initialize the components
         quiz_title_input = findViewById(R.id.quiz_title_input);
         add_button = findViewById(R.id.add_button);
+
+        Intent intent = getIntent();
+        text_size = intent.getStringExtra("TEXT_SIZE");
+
+        if(text_size.equals("Small"))
+        {
+            quiz_title_input.setTextAppearance(R.style.SMALL_TEXT);
+            add_button.setTextAppearance(R.style.SMALL_TEXT);
+        }
+        if(text_size.equals("Medium"))
+        {
+            quiz_title_input.setTextAppearance(R.style.MEDIUM_TEXT);
+            add_button.setTextAppearance(R.style.MEDIUM_TEXT);
+        }
+        if(text_size.equals("Large"))
+        {
+            quiz_title_input.setTextAppearance(R.style.LARGE_TEXT);
+            add_button.setTextAppearance(R.style.LARGE_TEXT);
+        }
 
 
         // call the onClick event listener for the "add_button"
@@ -51,7 +71,7 @@ public class AddQuizActivity extends AppCompatActivity {
                 Intent intent = new Intent(AddQuizActivity.this, AddQuestionActivity.class);
 //                intent.putExtra("QUIZ_ID", quiz_id);
                 intent.putExtra("QUIZ_TITLE", quiz_title);
-
+                intent.putExtra("TEXT_SIZE", text_size);
                 startActivity(intent);
             }
         });

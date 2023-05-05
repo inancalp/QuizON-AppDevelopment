@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Define text style for normal text with a text size of 14sp -->
+    <!-- Define text style for small text -->
+    <style name="SMALL_TEXT">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Define text style for medium text -->
+    <style name="MEDIUM_TEXT">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- Define text style for large text -->
+    <style name="LARGE_TEXT">
+        <item name="android:textSize">26sp</item>
+    </style>
+
+    <!-- Define text style for small titles -->
+    <style name="SMALL_TITLE">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- Define text style for medium titles -->
+    <style name="MEDIUM_TITLE">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <!-- Define text style for large titles -->
+    <style name="LARGE_TITLE">
+        <item name="android:textSize">26sp</item>
+    </style>
+
+
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+</resources>

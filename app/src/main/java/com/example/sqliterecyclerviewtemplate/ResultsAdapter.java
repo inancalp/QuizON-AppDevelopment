@@ -20,12 +20,13 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultsH
 
     private Context context;
     private ArrayList<Question> questions = new ArrayList<>();
+    private  String text_size;
 
-
-    ResultsAdapter(Context context, ArrayList questions)
+    ResultsAdapter(Context context, ArrayList questions, String text_size)
     {
         this.context = context;
         this.questions = questions;
+        this.text_size = text_size;
     }
 
     @NonNull
@@ -43,6 +44,35 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultsH
         results_holder.results_answerB_view.setText(String.valueOf(questions.get(position).getAnswerB()));
         results_holder.results_answerC_view.setText(String.valueOf(questions.get(position).getAnswerC()));
         results_holder.results_answerD_view.setText(String.valueOf(questions.get(position).getAnswerD()));
+
+        if(text_size.equals("Small"))
+        {
+            results_holder.results_question_view.setTextAppearance(R.style.SMALL_TEXT);
+            results_holder.results_answerA_view.setTextAppearance(R.style.SMALL_TEXT);
+            results_holder.results_answerB_view.setTextAppearance(R.style.SMALL_TEXT);
+            results_holder.results_answerC_view.setTextAppearance(R.style.SMALL_TEXT);
+            results_holder.results_answerD_view.setTextAppearance(R.style.SMALL_TEXT);
+            results_holder.results_return_main_activity_button.setTextAppearance(R.style.SMALL_TEXT);
+        }
+        if(text_size.equals("Medium"))
+        {
+            results_holder.results_question_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            results_holder.results_answerA_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            results_holder.results_answerB_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            results_holder.results_answerC_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            results_holder.results_answerD_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            results_holder.results_return_main_activity_button.setTextAppearance(R.style.MEDIUM_TEXT);
+        }
+        if(text_size.equals("Large"))
+        {
+            results_holder.results_question_view.setTextAppearance(R.style.LARGE_TEXT);
+            results_holder.results_answerA_view.setTextAppearance(R.style.LARGE_TEXT);
+            results_holder.results_answerB_view.setTextAppearance(R.style.LARGE_TEXT);
+            results_holder.results_answerC_view.setTextAppearance(R.style.LARGE_TEXT);
+            results_holder.results_answerD_view.setTextAppearance(R.style.LARGE_TEXT);
+            results_holder.results_return_main_activity_button.setTextAppearance(R.style.LARGE_TEXT);
+        }
+
 
         if (position == getItemCount() - 1)
             results_holder.results_return_main_activity_button.setVisibility(View.VISIBLE);

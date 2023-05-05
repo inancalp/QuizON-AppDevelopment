@@ -16,20 +16,38 @@ public class EditWelcomeTextActivity extends AppCompatActivity {
     Button edit_button;
     String welcome_text;
 
+    String text_size;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_welcome_text);
-        setTitle("Edit Welcome Text Activity");
+        getSupportActionBar().hide();
 
-        setTitle("EditWelcomeTextActivity");
+        Intent return_intent = getIntent();
+        welcome_text = return_intent.getStringExtra("WELCOME_TEXT");
+        text_size = return_intent.getStringExtra("TEXT_SIZE");
 
-        Intent returnIntent = getIntent();
-        welcome_text = returnIntent.getStringExtra("WELCOME_TEXT");
         welcome_text_input = findViewById(R.id.welcome_text_input);
         welcome_text_input.setText(welcome_text);
-
         edit_button = findViewById(R.id.edit_button);
+
+        if(text_size.equals("Small"))
+        {
+            welcome_text_input.setTextAppearance(R.style.SMALL_TEXT);
+            edit_button.setTextAppearance(R.style.SMALL_TEXT);
+        }
+        if(text_size.equals("Medium"))
+        {
+            welcome_text_input.setTextAppearance(R.style.MEDIUM_TEXT);
+            edit_button.setTextAppearance(R.style.MEDIUM_TEXT);
+        }
+        if(text_size.equals("Large"))
+        {
+            welcome_text_input.setTextAppearance(R.style.LARGE_TEXT);
+            edit_button.setTextAppearance(R.style.LARGE_TEXT);
+        }
+
         edit_button.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

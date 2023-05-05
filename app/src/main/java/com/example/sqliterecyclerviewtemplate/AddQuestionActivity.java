@@ -29,14 +29,20 @@ public class AddQuestionActivity extends AppCompatActivity {
     RadioButton correct_answer_radio_button;
     String correct_answer;
     ArrayList<Question> questions = new ArrayList<Question>();
+
+    String text_size;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_question);
-        setTitle("Add Question Activity");
+        getSupportActionBar().hide();
+
         Intent intent = getIntent();
         quiz_id = intent.getLongExtra("QUIZ_ID", -1);
         quiz_title = intent.getStringExtra("QUIZ_TITLE");
+        text_size = intent.getStringExtra("TEXT_SIZE");
 
         Log.d("AddQuestion", "quiz_id = " + quiz_id);
         Log.d("AddQuestion", "quiz_title = " + quiz_title);
@@ -51,6 +57,40 @@ public class AddQuestionActivity extends AppCompatActivity {
         correct_answer_radio_group = findViewById(R.id.correct_answer_radio_group);
         add_question_button = findViewById(R.id.add_question_button);
         store_quiz_button = findViewById(R.id.store_quiz_button);
+
+
+        if(text_size.equals("Small"))
+        {
+            question_view.setTextAppearance(R.style.SMALL_TEXT);
+            answer_a_view.setTextAppearance(R.style.SMALL_TEXT);
+            answer_b_view.setTextAppearance(R.style.SMALL_TEXT);
+            answer_c_view.setTextAppearance(R.style.SMALL_TEXT);
+            answer_d_view.setTextAppearance(R.style.SMALL_TEXT);
+            add_question_button.setTextAppearance(R.style.SMALL_TEXT);
+            store_quiz_button.setTextAppearance(R.style.SMALL_TEXT);
+        }
+        if(text_size.equals("Medium"))
+        {
+            question_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_a_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_b_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_c_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_d_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            add_question_button.setTextAppearance(R.style.MEDIUM_TEXT);
+            store_quiz_button.setTextAppearance(R.style.MEDIUM_TEXT);
+        }
+        if(text_size.equals("Large"))
+        {
+            question_view.setTextAppearance(R.style.LARGE_TEXT);
+            answer_a_view.setTextAppearance(R.style.LARGE_TEXT);
+            answer_b_view.setTextAppearance(R.style.LARGE_TEXT);
+            answer_c_view.setTextAppearance(R.style.LARGE_TEXT);
+            answer_d_view.setTextAppearance(R.style.LARGE_TEXT);
+            add_question_button.setTextAppearance(R.style.LARGE_TEXT);
+            store_quiz_button.setTextAppearance(R.style.LARGE_TEXT);
+        }
+
+
 
         add_question_button.setOnClickListener(new View.OnClickListener() {
             @Override
