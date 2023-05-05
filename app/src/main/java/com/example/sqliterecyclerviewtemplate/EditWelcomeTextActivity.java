@@ -4,13 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 
 public class EditWelcomeTextActivity extends AppCompatActivity {
@@ -24,7 +20,7 @@ public class EditWelcomeTextActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_welcome_text);
-
+        setTitle("Edit Welcome Text Activity");
 
         setTitle("EditWelcomeTextActivity");
 
@@ -45,11 +41,11 @@ public class EditWelcomeTextActivity extends AppCompatActivity {
                 welcome_text = "DEFAULT WELCOME TEXT.";
             }
 
-            MyDatabaseHelper db_welcome_text = new MyDatabaseHelper(EditWelcomeTextActivity.this);
+            DatabaseHelper db_welcome_text = new DatabaseHelper(EditWelcomeTextActivity.this);
             db_welcome_text.updateWelcomeText(welcome_text);
-//            returnIntent.putExtra("WELCOME_TEXT",welcome_text);
-//            setResult(EditWelcomeTextActivity.RESULT_OK, returnIntent);
-//            finish();
+
+            Intent intent = new Intent(EditWelcomeTextActivity.this, MainActivity.class);
+            startActivity(intent);
         }
     });
 

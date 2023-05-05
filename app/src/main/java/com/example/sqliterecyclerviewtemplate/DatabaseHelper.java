@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class MyDatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
 
@@ -37,7 +37,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String WELCOME_TEXT="welcome_text";
 
 
-    MyDatabaseHelper(@Nullable Context context) {
+    DatabaseHelper(@Nullable Context context) {
         // factory is set to null explicitly.
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
@@ -109,9 +109,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         ContentValues cv = new ContentValues();
         cv.put(QUIZ_TITLE, title);
 
-        long result = db.insert(QUIZ_TABLE_NAME, null, cv);
+        long quiz_id = db.insert(QUIZ_TABLE_NAME, null, cv);
 
-        if(result == -1)
+        if(quiz_id == -1)
         {
             // context object comes from the constructor. (memorize.)
             Toast.makeText(context, "QUIZ_TABLE Insert Failed", Toast.LENGTH_SHORT).show();
@@ -122,7 +122,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         }
 
-        return result;
+        return quiz_id;
     }
 
 
@@ -266,10 +266,44 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteQuiz(String quiz_id) {
 
-        Log.d("deleteQuiz", quiz_id);
+        Log.d("deleteQuiz", "You have reached to the deleteQuiz Method, quiz_id: " + quiz_id);
         SQLiteDatabase db = getWritableDatabase();
-
+        db.delete(QUESTIONS_TABLE_NAME, QUIZ_ID + " = ?", new String[] { quiz_id });
         db.delete(QUIZ_TABLE_NAME, QUIZ_ID + " = ?", new String[] { quiz_id });
     }
 
+    public long assignQuizId() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT MAX(" + QUIZ_ID + ") FROM " + QUIZ_TABLE_NAME;
+        int max_quiz_id = 0;
+        Cursor cursor = db.rawQuery(query, null);
+
+        //since max_quiz_id is already 0 as default, no need to put an else block within the statement below
+        if (cursor.moveToFirst()) {
+            max_quiz_id = cursor.getInt(0); //find quiz_id column index first.(refer quizTitleInUse() method)
+        }
+        cursor.close();
+        db.close();
+        return (max_quiz_id + 1);
+    }
+
+    public boolean quizTitleInUse(String quiz_title) {
+        String existing_quiz_title;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + QUIZ_TITLE + " FROM " + QUIZ_TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        //Good practice to make sure the index number for a specific column.
+        Integer quiz_title_index = cursor.getColumnIndex(QUIZ_TITLE);
+
+        while(cursor.moveToNext())
+        {
+            existing_quiz_title = cursor.getString(quiz_title_index);
+            if(existing_quiz_title.equals(quiz_title))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

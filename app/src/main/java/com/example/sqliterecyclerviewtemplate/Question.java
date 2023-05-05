@@ -3,6 +3,9 @@ package com.example.sqliterecyclerviewtemplate;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+
+// when Parcelable implementation is done, custom type can be directed to next activity
+// ref: QuestionAdapter file.
 public class Question implements Parcelable {
     private String question;
     private String answer_a;
@@ -10,7 +13,6 @@ public class Question implements Parcelable {
     private String answer_c;
     private String answer_d;
     private String correct_answer;
-
     private String selected_answer;
 
     // @constructor

@@ -1,9 +1,10 @@
 package com.example.sqliterecyclerviewtemplate;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,12 +25,15 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
     ArrayList<Question> questions = new ArrayList<>();
     private RadioButton checked_radio_button;
     private Integer correct_answers_amount;
+    private long quiz_id;
+
 
 //    QuestionsAdapter(Context context, ArrayList question_id, ArrayList question, ArrayList answer_a, ArrayList answer_b, ArrayList answer_c, ArrayList answer_d, ArrayList correct_answers)
-    QuestionsAdapter(Context context, ArrayList<Question> questions)
+    QuestionsAdapter(Context context, ArrayList<Question> questions, long quiz_id)
     {
         this.context = context;
         this.questions = questions;
+        this.quiz_id = quiz_id;
 
         for(Integer i = 0; i < questions.size(); i++)
         {
@@ -61,13 +65,18 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
         question_holder.answerC_view.setText(String.valueOf(questions.get(position).getAnswerC()));
         question_holder.answerD_view.setText(String.valueOf(questions.get(position).getAnswerD()));
 
+        if (position == 0)
+            question_holder.delete_quiz_button.setVisibility(View.VISIBLE);
+
         if (position == getItemCount() - 1)
             question_holder.show_results_button.setVisibility(View.VISIBLE);
+
+
+
 
         question_holder.select_answer_radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-
                 checked_radio_button = group.findViewById(checkedId);
                 questions.get(position).setSelectedAnswer(checked_radio_button.getText().toString());
 
@@ -112,6 +121,27 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
 //                Log.d("QuestionAdapter", "(!)(!) Correct Answers: " + correct_answers_amount + "/" + getItemCount());
             }
         });
+
+        question_holder.delete_quiz_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // AlertDialog is used to confirm Delete Quiz Action.
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Are you sure you want to perform this action?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DatabaseHelper db = new DatabaseHelper(context);
+                        String quiz_id_string = Long.toString(quiz_id);
+                        db.deleteQuiz(quiz_id_string);
+                        Intent intent = new Intent(context, MainActivity.class);
+                        context.startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("No", null);
+                builder.show();
+            }
+        });
     }
 
     @Override
@@ -125,8 +155,12 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
         RadioButton  answerA_view, answerB_view, answerC_view, answerD_view;
         RadioGroup select_answer_radio_group;
         Button show_results_button;
+
+        Button delete_quiz_button;
+
         public QuestionHolder(@NonNull View itemView) {
             super(itemView);
+
             question_view = itemView.findViewById(R.id.question_view);
             answerA_view = itemView.findViewById(R.id.answerA_view);
             answerB_view = itemView.findViewById(R.id.answerB_view);
@@ -135,6 +169,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
             show_results_button = itemView.findViewById(R.id.show_results_button);
             select_answer_radio_group = itemView.findViewById(R.id.select_answer_radio_group);
             show_results_button = itemView.findViewById(R.id.show_results_button);
+            delete_quiz_button = itemView.findViewById(R.id.delete_quiz_button);
         }
     }
 }

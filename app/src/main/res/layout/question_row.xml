@@ -2,10 +2,25 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/question_row_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/delete_quiz_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Delete Quiz"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -23,6 +38,7 @@
             android:layout_height="wrap_content"
             android:padding="12dp">
 
+
             <TextView
                 android:id="@+id/question_view"
                 android:layout_width="0dp"
@@ -32,6 +48,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+
+
 
             <RadioGroup
                 android:id="@+id/select_answer_radio_group"
@@ -76,9 +95,10 @@
 
     <Button
         android:id="@+id/show_results_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="16dp"
         android:text="Show Results"
         android:visibility="gone"/>
 

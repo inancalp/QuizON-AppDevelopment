@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 public class ShowQuestionsActivity extends AppCompatActivity {
 
 
-    private MyDatabaseHelper db;
+    private DatabaseHelper db;
 //  private   ArrayList question_id, question, answer_a, answer_b, answer_c, answer_d, correct_answer;
     private ArrayList<Question> questions = new ArrayList<>();
     private long quiz_id;
@@ -26,6 +24,7 @@ public class ShowQuestionsActivity extends AppCompatActivity {
     private RecyclerView questions_recyclerview;
     private QuestionsAdapter questionsAdapter;
     private TextView quiz_title_view;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +45,12 @@ public class ShowQuestionsActivity extends AppCompatActivity {
         Log.d("ShowQuestionsActivityLog", "quiz_title: " + quiz_title);
 
         questions_recyclerview = findViewById(R.id.questions_recyclerview);
-        db = new MyDatabaseHelper(ShowQuestionsActivity.this);
+        db = new DatabaseHelper(ShowQuestionsActivity.this);
 
         storeQuestions();
 
 //        questionsAdapter = new QuestionsAdapter(ShowQuestionsActivity.this, question_id, question, answer_a, answer_b, answer_c, answer_d, correct_answer);
-        questionsAdapter = new QuestionsAdapter(ShowQuestionsActivity.this, questions);
+        questionsAdapter = new QuestionsAdapter(ShowQuestionsActivity.this, questions, quiz_id);
         questions_recyclerview.setAdapter(questionsAdapter);
         questions_recyclerview.setLayoutManager(new LinearLayoutManager(ShowQuestionsActivity.this));
 

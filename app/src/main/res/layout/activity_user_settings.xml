@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserSettingsActivity">
+
+
+    <TextView
+        android:id="@+id/set_font_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="105dp"
+        android:text="Select Font Size"
+        android:textSize="24dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/select_theme_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Select Theme"
+        android:gravity="center"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/small_font_button"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/small_font_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Small"
+        app:layout_constraintEnd_toStartOf="@+id/medium_font_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_font_textview" />
+
+    <Button
+        android:id="@+id/medium_font_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Medium"
+        app:layout_constraintEnd_toStartOf="@+id/large_font_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/small_font_button"
+        app:layout_constraintTop_toBottomOf="@+id/set_font_textview" />
+
+    <Button
+        android:id="@+id/large_font_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/medium_font_button"
+        app:layout_constraintTop_toBottomOf="@+id/set_font_textview" />
+
+    <Button
+        android:id="@+id/light_theme_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Light"
+        app:layout_constraintEnd_toStartOf="@+id/dark_theme_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_theme_textview" />
+
+    <Button
+        android:id="@+id/dark_theme_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/light_theme_button"
+        app:layout_constraintTop_toBottomOf="@+id/select_theme_textview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

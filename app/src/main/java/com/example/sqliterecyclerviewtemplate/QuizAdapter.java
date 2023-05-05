@@ -3,7 +3,6 @@ package com.example.sqliterecyclerviewtemplate;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
+public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.MyViewHolder>{
 
     private Context context;
     private ArrayList quiz_id;
@@ -23,7 +22,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
 
     // constructor
-    CustomAdapter(Context context, ArrayList quiz_id, ArrayList quiz_title)
+    QuizAdapter(Context context, ArrayList quiz_id, ArrayList quiz_title)
     {
         this.context = context;
         this.quiz_id = quiz_id;
@@ -33,7 +32,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @NonNull
     @Override
-    public CustomAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public QuizAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.my_row, parent, false);
@@ -41,7 +40,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull QuizAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 //        holder.quiz_id_txt.setText(String.valueOf(quiz_id.get(position)));
         holder.quiz_title_txt.setText(String.valueOf(quiz_title.get(position)));
 

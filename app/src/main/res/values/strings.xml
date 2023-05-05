@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">SQLiteRecyclerViewTemplate</string>
+    
+    <string-array name="font_size">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+
+    <string-array name="app_theme">
+        <item>Dark</item>
+        <item>Light</item>
+    </string-array>
 </resources>

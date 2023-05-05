@@ -11,41 +11,26 @@
         android:id="@+id/welcome_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/border"
         android:padding="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:text="Default Welcome Text"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:background="@drawable/border"
-        android:text="Default Welcome Text"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.103" />
-
-<!--    <TextView-->
-<!--        android:id="@+id/welcome_textview"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:minHeight="200dp"-->
-<!--        android:background="@drawable/border"-->
-<!--        android:text="Default Welcome Text"-->
-<!--        android:padding="16dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.103" />-->
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/questions_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="wrap"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcome_textview"
@@ -55,28 +40,54 @@
         android:id="@+id/edit_text_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/add_quiz_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998"
         app:srcCompat="@drawable/ic_edit" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_quiz_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914"
         app:srcCompat="@drawable/ic_add" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/user_settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/edit_text_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_settings" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="113dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="172dp"
+        android:text="Switch"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+
+        app:layout_constraintBaseline_toBaselineOf="@+id/switch1"
+        tools:layout_editor_absoluteX="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
