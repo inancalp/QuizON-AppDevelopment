@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuizON Express</string>
+
+    <string-array name="font_size">
+        <item>@string/font_small</item>
+        <item>@string/font_medium</item>
+        <item>@string/font_large</item>
+    </string-array>
+
+    <string name="font_small">Kucuk</string>
+    <string name="font_medium">Orta</string>
+    <string name="font_large">Buyuk</string>
+
+    <!--MainActivity-->
+    <string name="default_welcome_text">Standart Karsilama Mesaji.</string>
+
+
+    <!--AddQuestionActivity-->
+    <string name="question_view">Soru Buraya.</string>
+    <string name="choose_correct_answer_text_view">Dogru Cevabi Sec:</string>
+    <string name="add_question_button">Soru Ekle</string>
+    <string name="store_quiz_button">Test Kaydet</string>
+
+    <string name="answer_d_view">Cevap (D) Buraya.</string>
+    <string name="answer_c_view">Cevap (C) Buraya.</string>
+    <string name="answer_b_view">Cevap (B) Buraya.</string>
+    <string name="answer_a_view">Cevap (A) Buraya.</string>
+
+    <string name="answer_d_text_view">Cevap (D):</string>
+    <string name="answer_c_text_view">Cevap (C):</string>
+    <string name="answer_b_text_view">Cevap (B):</string>
+    <string name="answer_a_text_view">Cevap (A):</string>
+
+
+    <!--AddQuizActivity-->
+    <string name="quiz_title_input">Test Basligi Buraya.</string>
+    <string name="add_button">Sonraki</string>
+
+
+    <!--EditWelcomeTextActivity-->
+    <string name="welcome_text_input">Hosgeldin Metni</string>
+    <string name="edit_button">Duzenle</string>
+
+
+    <!--ShowQuestionsActivity-->
+    <!--N/A-->
+
+
+    <!--ShowResultsActivity-->
+    <string name="results_symbol_textview">Sonuclar</string>
+
+
+    <!--QuizRow-->
+    <string name="quiz_title_txt">Test Basligi</string>
+
+
+    <!--QuestionRow-->
+    <string name="delete_quiz_button">Testi Sil</string>
+    <string name="show_results_button">Sonuclari Goster</string>
+
+
+    <!--ResultsRow-->
+    <string name="results_return_main_activity_button">Ana Aktiviteye Geri Don</string>
+
+</resources>

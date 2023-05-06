@@ -36,17 +36,17 @@ public class ShowResultsActivity extends AppCompatActivity {
         results_textview = findViewById(R.id.results_textview);
         results_symbol_textview = findViewById(R.id.results_symbol_textview);
 
-        if(text_size.equals("Small"))
+        if(text_size.equals(getResources().getString(R.string.font_small)))
         {
             results_textview.setTextAppearance(R.style.SMALL_TITLE);
             results_symbol_textview.setTextAppearance(R.style.SMALL_TITLE);
         }
-        if(text_size.equals("Medium"))
+        if(text_size.equals(getResources().getString(R.string.font_medium)))
         {
             results_textview.setTextAppearance(R.style.MEDIUM_TITLE);
             results_symbol_textview.setTextAppearance(R.style.MEDIUM_TITLE);
         }
-        if(text_size.equals("Large"))
+        if(text_size.equals(getResources().getString(R.string.font_large)))
         {
             results_textview.setTextAppearance(R.style.LARGE_TITLE);
             results_symbol_textview.setTextAppearance(R.style.LARGE_TITLE);

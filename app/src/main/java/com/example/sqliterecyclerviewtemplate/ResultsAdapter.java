@@ -45,7 +45,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultsH
         results_holder.results_answerC_view.setText(String.valueOf(questions.get(position).getAnswerC()));
         results_holder.results_answerD_view.setText(String.valueOf(questions.get(position).getAnswerD()));
 
-        if(text_size.equals("Small"))
+        if(text_size.equals(context.getString(R.string.font_small)))
         {
             results_holder.results_question_view.setTextAppearance(R.style.SMALL_TEXT);
             results_holder.results_answerA_view.setTextAppearance(R.style.SMALL_TEXT);
@@ -54,7 +54,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultsH
             results_holder.results_answerD_view.setTextAppearance(R.style.SMALL_TEXT);
             results_holder.results_return_main_activity_button.setTextAppearance(R.style.SMALL_TEXT);
         }
-        if(text_size.equals("Medium"))
+        if(text_size.equals(context.getString(R.string.font_medium)))
         {
             results_holder.results_question_view.setTextAppearance(R.style.MEDIUM_TEXT);
             results_holder.results_answerA_view.setTextAppearance(R.style.MEDIUM_TEXT);
@@ -63,7 +63,7 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultsH
             results_holder.results_answerD_view.setTextAppearance(R.style.MEDIUM_TEXT);
             results_holder.results_return_main_activity_button.setTextAppearance(R.style.MEDIUM_TEXT);
         }
-        if(text_size.equals("Large"))
+        if(text_size.equals(context.getString(R.string.font_large)))
         {
             results_holder.results_question_view.setTextAppearance(R.style.LARGE_TEXT);
             results_holder.results_answerA_view.setTextAppearance(R.style.LARGE_TEXT);

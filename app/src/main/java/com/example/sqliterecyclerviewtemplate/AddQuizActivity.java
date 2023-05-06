@@ -29,17 +29,17 @@ public class AddQuizActivity extends AppCompatActivity {
         Intent intent = getIntent();
         text_size = intent.getStringExtra("TEXT_SIZE");
 
-        if(text_size.equals("Small"))
+        if(text_size.equals(getResources().getString(R.string.font_small)))
         {
             quiz_title_input.setTextAppearance(R.style.SMALL_TEXT);
             add_button.setTextAppearance(R.style.SMALL_TEXT);
         }
-        if(text_size.equals("Medium"))
+        if(text_size.equals(getResources().getString(R.string.font_medium)))
         {
             quiz_title_input.setTextAppearance(R.style.MEDIUM_TEXT);
             add_button.setTextAppearance(R.style.MEDIUM_TEXT);
         }
-        if(text_size.equals("Large"))
+        if(text_size.equals(getResources().getString(R.string.font_large)))
         {
             quiz_title_input.setTextAppearance(R.style.LARGE_TEXT);
             add_button.setTextAppearance(R.style.LARGE_TEXT);

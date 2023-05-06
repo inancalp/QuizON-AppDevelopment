@@ -32,17 +32,17 @@ public class EditWelcomeTextActivity extends AppCompatActivity {
         welcome_text_input.setText(welcome_text);
         edit_button = findViewById(R.id.edit_button);
 
-        if(text_size.equals("Small"))
+        if(text_size.equals(getResources().getString(R.string.font_small)))
         {
             welcome_text_input.setTextAppearance(R.style.SMALL_TEXT);
             edit_button.setTextAppearance(R.style.SMALL_TEXT);
         }
-        if(text_size.equals("Medium"))
+        if(text_size.equals(getResources().getString(R.string.font_medium)))
         {
             welcome_text_input.setTextAppearance(R.style.MEDIUM_TEXT);
             edit_button.setTextAppearance(R.style.MEDIUM_TEXT);
         }
-        if(text_size.equals("Large"))
+        if(text_size.equals(getResources().getString(R.string.font_large)))
         {
             welcome_text_input.setTextAppearance(R.style.LARGE_TEXT);
             edit_button.setTextAppearance(R.style.LARGE_TEXT);

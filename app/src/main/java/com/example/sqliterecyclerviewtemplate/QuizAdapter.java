@@ -3,7 +3,6 @@ package com.example.sqliterecyclerviewtemplate;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -40,7 +37,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.MyViewHolder>{
     public QuizAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.my_row, parent, false);
+        View view = inflater.inflate(R.layout.quiz_row, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -49,13 +46,13 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.MyViewHolder>{
         holder.quiz_title_txt.setText(String.valueOf(quiz_title.get(position)));
 
 //        Log.d("QuizAdapter", "text size: " + text_size);
-        if(text_size.equals("Small"))
+        if(text_size.equals(context.getString(R.string.font_small)))
             holder.quiz_title_txt.setTextAppearance(R.style.SMALL_TEXT);
-        if(text_size.equals("Medium"))
+        if(text_size.equals(context.getString(R.string.font_medium)))
             holder.quiz_title_txt.setTextAppearance(R.style.MEDIUM_TEXT);
-        if(text_size.equals("Large"))
+        if(text_size.equals(context.getString(R.string.font_large)))
             holder.quiz_title_txt.setTextAppearance(R.style.LARGE_TEXT);
-        holder.my_row_layout.setOnClickListener(new View.OnClickListener() {
+        holder.quiz_row_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ShowQuestionsActivity.class);
@@ -79,12 +76,12 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.MyViewHolder>{
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView quiz_title_txt;
-        LinearLayout my_row_layout;
+        LinearLayout quiz_row_layout;
         public MyViewHolder(@NonNull View itemView) {
 
             super(itemView);
             quiz_title_txt = itemView.findViewById(R.id.quiz_title_txt);
-            my_row_layout = itemView.findViewById(R.id.my_row_layout);
+            quiz_row_layout = itemView.findViewById(R.id.quiz_row_layout);
         }
     }
 }

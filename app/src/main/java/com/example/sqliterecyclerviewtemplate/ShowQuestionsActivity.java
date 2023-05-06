@@ -44,11 +44,11 @@ public class ShowQuestionsActivity extends AppCompatActivity {
 
 //        Log.d("ShowQuestionsActivity", "text_size: " + text_size);
 
-        if(text_size.equals("Small"))
+        if(text_size.equals(getResources().getString(R.string.font_small)))
             quiz_title_view.setTextAppearance(R.style.SMALL_TITLE);
-        if(text_size.equals("Medium"))
+        if(text_size.equals(getResources().getString(R.string.font_medium)))
             quiz_title_view.setTextAppearance(R.style.MEDIUM_TITLE);
-        if(text_size.equals("Large"))
+        if(text_size.equals(getResources().getString(R.string.font_large)))
             quiz_title_view.setTextAppearance(R.style.LARGE_TITLE);
 
 

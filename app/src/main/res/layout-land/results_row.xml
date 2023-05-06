@@ -29,7 +29,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Question Here."
-                android:textColor="@color/black"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -91,11 +90,12 @@
     <Button
         android:id="@+id/results_return_main_activity_button"
         android:layout_width="match_parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/results_return_main_activity_button"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="512dp"
+        android:gravity="start"/>
 
 </LinearLayout>

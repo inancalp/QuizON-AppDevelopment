@@ -120,13 +120,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // Here I use the Shared Preferences to get the implemented text size, if nothing is selected before, default size is Medium.
         // Then I emit setSelection which activates the onItemSelected method.
-        text_size = shared_preferences.getString("TEXT_SIZE", "Medium");
+        // (??) Is it still valid in case of change in language?
+        text_size = shared_preferences.getString("TEXT_SIZE", getResources().getString(R.string.font_medium));
 
-        if(text_size.equals("Small")) {
+        if(text_size.equals(getResources().getString(R.string.font_small))) {
             select_text_size_spinner.setSelection(0);
-        } else if(text_size.equals("Medium")) {
+        } else if(text_size.equals(getResources().getString(R.string.font_medium))) {
             select_text_size_spinner.setSelection(1);
-        } else if(text_size.equals("Large")) {
+        } else if(text_size.equals(getResources().getString(R.string.font_large))) {
             select_text_size_spinner.setSelection(2);
         }
 
@@ -218,11 +219,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         text_size = parent.getSelectedItem().toString();
 
-        if(text_size.equals("Small"))
+
+
+
+        if(text_size.equals(getResources().getString(R.string.font_small)))
             welcome_textview.setTextAppearance(R.style.SMALL_TEXT);
-        if(text_size.equals("Medium"))
+        if(text_size.equals(getResources().getString(R.string.font_medium)))
             welcome_textview.setTextAppearance(R.style.MEDIUM_TEXT);
-        if(text_size.equals("Large"))
+        if(text_size.equals(getResources().getString(R.string.font_large)))
             welcome_textview.setTextAppearance(R.style.LARGE_TEXT);
 
         editor = shared_preferences.edit();

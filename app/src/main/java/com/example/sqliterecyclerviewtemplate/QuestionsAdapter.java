@@ -66,7 +66,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
         question_holder.answerC_view.setText(String.valueOf(questions.get(position).getAnswerC()));
         question_holder.answerD_view.setText(String.valueOf(questions.get(position).getAnswerD()));
 
-        if(text_size.equals("Small"))
+        if(text_size.equals(context.getString(R.string.font_small)))
         {
             question_holder.question_view.setTextAppearance(R.style.SMALL_TEXT);
             question_holder.answerA_view.setTextAppearance(R.style.SMALL_TEXT);
@@ -76,7 +76,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
             question_holder.show_results_button.setTextAppearance(R.style.SMALL_TEXT);
             question_holder.delete_quiz_button.setTextAppearance(R.style.SMALL_TEXT);
         }
-        if(text_size.equals("Medium"))
+        if(text_size.equals(context.getString(R.string.font_medium)))
         {
             question_holder.question_view.setTextAppearance(R.style.MEDIUM_TEXT);
             question_holder.answerA_view.setTextAppearance(R.style.MEDIUM_TEXT);
@@ -86,7 +86,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.Ques
             question_holder.show_results_button.setTextAppearance(R.style.MEDIUM_TEXT);
             question_holder.delete_quiz_button.setTextAppearance(R.style.MEDIUM_TEXT);
         }
-        if(text_size.equals("Large"))
+        if(text_size.equals(context.getString(R.string.font_large)))
         {
             question_holder.question_view.setTextAppearance(R.style.LARGE_TEXT);
             question_holder.answerA_view.setTextAppearance(R.style.LARGE_TEXT);

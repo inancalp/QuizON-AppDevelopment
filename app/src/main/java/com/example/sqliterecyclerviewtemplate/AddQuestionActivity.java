@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class AddQuestionActivity extends AppCompatActivity {
 
 
-    TextView quiz_title_textview;
+    TextView answer_a_text_view, answer_b_text_view, answer_c_text_view, answer_d_text_view, choose_correct_answer_text_view;
     EditText question_view, answer_a_view, answer_b_view, answer_c_view, answer_d_view;
     Button add_question_button, store_quiz_button;
     long quiz_id;
@@ -31,6 +31,8 @@ public class AddQuestionActivity extends AppCompatActivity {
     ArrayList<Question> questions = new ArrayList<Question>();
 
     String text_size;
+
+    RadioButton answer_a_radio, answer_b_radio, answer_c_radio, answer_d_radio;
 
 
     @Override
@@ -59,7 +61,20 @@ public class AddQuestionActivity extends AppCompatActivity {
         store_quiz_button = findViewById(R.id.store_quiz_button);
 
 
-        if(text_size.equals("Small"))
+        answer_a_text_view = findViewById(R.id.answer_a_text_view);
+        answer_b_text_view = findViewById(R.id.answer_b_text_view);
+        answer_c_text_view = findViewById(R.id.answer_c_text_view);
+        answer_d_text_view = findViewById(R.id.answer_d_text_view);
+        choose_correct_answer_text_view = findViewById(R.id.choose_correct_answer_text_view);
+
+        answer_a_radio = findViewById(R.id.answer_a_radio);
+        answer_b_radio = findViewById(R.id.answer_b_radio);
+        answer_c_radio = findViewById(R.id.answer_c_radio);
+        answer_d_radio = findViewById(R.id.answer_d_radio);
+
+
+
+        if(text_size.equals(getResources().getString(R.string.font_small)))
         {
             question_view.setTextAppearance(R.style.SMALL_TEXT);
             answer_a_view.setTextAppearance(R.style.SMALL_TEXT);
@@ -68,8 +83,19 @@ public class AddQuestionActivity extends AppCompatActivity {
             answer_d_view.setTextAppearance(R.style.SMALL_TEXT);
             add_question_button.setTextAppearance(R.style.SMALL_TEXT);
             store_quiz_button.setTextAppearance(R.style.SMALL_TEXT);
+            //
+            answer_a_text_view.setTextAppearance(R.style.SMALL_TEXT);
+            answer_b_text_view.setTextAppearance(R.style.SMALL_TEXT);
+            answer_c_text_view.setTextAppearance(R.style.SMALL_TEXT);
+            answer_d_text_view.setTextAppearance(R.style.SMALL_TEXT);
+            choose_correct_answer_text_view.setTextAppearance(R.style.SMALL_TEXT);
+            //
+            answer_a_radio.setTextAppearance(R.style.SMALL_TEXT);
+            answer_b_radio.setTextAppearance(R.style.SMALL_TEXT);
+            answer_c_radio.setTextAppearance(R.style.SMALL_TEXT);
+            answer_d_radio.setTextAppearance(R.style.SMALL_TEXT);
         }
-        if(text_size.equals("Medium"))
+        if(text_size.equals(getResources().getString(R.string.font_medium)))
         {
             question_view.setTextAppearance(R.style.MEDIUM_TEXT);
             answer_a_view.setTextAppearance(R.style.MEDIUM_TEXT);
@@ -78,8 +104,19 @@ public class AddQuestionActivity extends AppCompatActivity {
             answer_d_view.setTextAppearance(R.style.MEDIUM_TEXT);
             add_question_button.setTextAppearance(R.style.MEDIUM_TEXT);
             store_quiz_button.setTextAppearance(R.style.MEDIUM_TEXT);
+            //
+            answer_a_text_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_b_text_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_c_text_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_d_text_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            choose_correct_answer_text_view.setTextAppearance(R.style.MEDIUM_TEXT);
+            //
+            answer_a_radio.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_b_radio.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_c_radio.setTextAppearance(R.style.MEDIUM_TEXT);
+            answer_d_radio.setTextAppearance(R.style.MEDIUM_TEXT);
         }
-        if(text_size.equals("Large"))
+        if(text_size.equals(getResources().getString(R.string.font_large)))
         {
             question_view.setTextAppearance(R.style.LARGE_TEXT);
             answer_a_view.setTextAppearance(R.style.LARGE_TEXT);
@@ -88,6 +125,18 @@ public class AddQuestionActivity extends AppCompatActivity {
             answer_d_view.setTextAppearance(R.style.LARGE_TEXT);
             add_question_button.setTextAppearance(R.style.LARGE_TEXT);
             store_quiz_button.setTextAppearance(R.style.LARGE_TEXT);
+            //
+            answer_a_text_view.setTextAppearance(R.style.LARGE_TEXT);
+            answer_b_text_view.setTextAppearance(R.style.LARGE_TEXT);
+            answer_c_text_view.setTextAppearance(R.style.LARGE_TEXT);
+            answer_d_text_view.setTextAppearance(R.style.LARGE_TEXT);
+            choose_correct_answer_text_view.setTextAppearance(R.style.LARGE_TEXT);
+            //
+            answer_a_radio.setTextAppearance(R.style.LARGE_TEXT);
+            answer_b_radio.setTextAppearance(R.style.LARGE_TEXT);
+            answer_c_radio.setTextAppearance(R.style.LARGE_TEXT);
+            answer_d_radio.setTextAppearance(R.style.LARGE_TEXT);
+
         }
 
 
